@@ -34,5 +34,10 @@ export default function FirstTask() {
     console.log(s3, isValid(s3))
     console.log(s4, isValid(s4))
 
-    return <h1>Hello!</h1>;
+    return (
+        <div className="container">
+            <span className="text">Данную задачу я выполнин проверяя строковые переменные содержащие в себе такие символы как: "( )", `/{ }/`, "[ ]"</span>
+            <span className="text">Решение данной задачи лежит в DevTools в консоле</span>
+        </div>
+    );
 }
