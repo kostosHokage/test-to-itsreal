@@ -23,7 +23,7 @@ export default function SecondTask() {
         }
     }, [elem])
 
-    return (
+    return (git rm -r --cached node_modules
         <div className="container">
             <Button type="primary" onClick={() => {
                 setElem([...elem, {time: setTimer()}])
