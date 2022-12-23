@@ -6,10 +6,6 @@ export default function SecondTask() {
     const [elem, setElem] = useState([])
     const ref = useRef(0);
 
-    useEffect(() => {
-        ref.current = 0;
-    }, [])
-
     function setTimer() {
         let max = 5;
         let min = 1;
@@ -28,7 +24,7 @@ export default function SecondTask() {
     useEffect(() => {
         for (let i = 0; i < elem.length; i++) {
             setTimeout(function () {
-                if(elem.length) {
+                if(ref.current >= 0) {
                     setElem(elem.slice(elem[i], 1))
                 }
             }, elem[i].time * 1000)
@@ -43,13 +39,16 @@ export default function SecondTask() {
             }}>
                 Add element
             </Button>
+            {/* eslint-disable-next-line array-callback-return */}
             {elem.map((el, index) => {
-                return (
-                    <div className="square" key={index}>
-                        <p className="elem-id">{index}</p>
-                        <p className="elem-time">{ref.current}</p>
-                    </div>
-                )
+                if(ref.current > 0) {
+                    return (
+                        <div className="square" key={index}>
+                            <p className="elem-id">{index}</p>
+                            <p className="elem-time">{ref.current}</p>
+                        </div>
+                    )
+                }
             })}
         </div>
     );
