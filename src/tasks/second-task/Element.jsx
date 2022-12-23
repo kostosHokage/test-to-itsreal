@@ -1,39 +1,19 @@
-import React, {useState} from "react";
-import {Button} from "antd";
-import {useEffect} from "react";
+import React, { useRef } from "react";
+import PropTypes from "prop-types";
 
-export default function Element() {
-    const [arr, setArr] = useState(['one', 'two', 'three', 'four']);
-    const [timerId, setTimerId] = useState(null);
 
-    useEffect(() => {
-        clearTimeout(timerId)
-        let max = 4000
-        let min = 1000
-        let random = Math.floor(Math.random() * (max - min) + min)
-        setTimerId(setTimeout(() => deleteElementFromArr(arr), random))
-    },[arr]);
+export default function Element(props) {
+    const ref = useRef(props.timer);
 
-    const addNewElementToArr = () => {
-        setArr([...arr, 'newElement']);
-    };
-
-    const deleteElementFromArr = (arr) => {
-        if (arr.length) {
-            setArr(arr.slice(0, arr.length - 1))
-        }
+    Element.propTypes = {
+        timer: PropTypes.number.isRequired,
+        elemId: PropTypes.number.isRequired
     };
 
     return (
-        <div>
-            <div>
-                <Button onClick={addNewElementToArr}>add</Button>
-            </div>
-            <div style={{marginTop: '10px'}}>
-                {arr.map((a, index) => (
-                    <div key={index}>{a}</div>
-                ))}
-            </div>
+        <div className="square" key={props.elemId}>
+            <p className="elem-id">{props.elemId}</p>
+            <p className="elem-time">{ref.current}</p>
         </div>
     )
 }

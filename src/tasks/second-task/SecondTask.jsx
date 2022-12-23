@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Button} from 'antd';
-// import Element from "./Element";
+import Element from "./Element";
 
 export default function SecondTask() {
     const [elem, setElem] = useState([])
@@ -9,18 +9,17 @@ export default function SecondTask() {
     function setTimer() {
         let max = 5;
         let min = 1;
-        // ref.current = Math.floor(Math.random() * (max - min) + min);
-        ref.current = 5
+        let random = Math.floor(Math.random() * (max - min) + min);
+
         setInterval(() => {
-            if (ref.current > 0) {
-                ref.current--;
+            if (random > 0) {
+                random.toString();
+                return random--;
             } else {
                 clearInterval()
                 return null;
             }
-            console.log(ref.current)
         }, 1000)
-        console.log(ref.current)
     }
 
     useEffect(() => {
@@ -33,24 +32,20 @@ export default function SecondTask() {
         }
     }, [elem])
 
-
     return (
         <div className="container">
             <Button type="primary" onClick={() => {
                 setElem([...elem, {time: setTimer()}])
+                console.log(elem)
             }}>
                 Add element
             </Button>
-            {/* eslint-disable-next-line array-callback-return */}
             {elem.map((el, index) => {
                 if(ref.current > 0) {
                     return (
-                        <div className="square" key={index}>
-                            <p className="elem-id">{index}</p>
-                            <p className="elem-time">{ref.current}</p>
-                        </div>
+                        <Element  elemId={index} timer={elem.time}/>
                     )
-                }
+                } else return null;
             })}
         </div>
     );
