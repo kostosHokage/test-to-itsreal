@@ -9,11 +9,13 @@ export default function SecondTask() {
     function setTimer() {
         let max = 5;
         let min = 1;
-        ref.current = Math.floor(Math.random() * (max - min) + min);
+        // ref.current = Math.floor(Math.random() * (max - min) + min);
+        ref.current = 5
         setInterval(() => {
             if (ref.current > 0) {
                 ref.current--;
             } else {
+                clearInterval()
                 return null;
             }
             console.log(ref.current)
