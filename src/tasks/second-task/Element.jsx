@@ -30,7 +30,7 @@ export default function Element(props) {
         return () => {
             clearInterval(intervalRef.current)
         }
-    }, [count])
+    }, [count, elements, handlerElem, id])
 
     return (
         <div className="square" key={id}>
