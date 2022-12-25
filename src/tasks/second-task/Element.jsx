@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 export default function Element(props) {
     const {handlerElem, elements, id, index} = props
 
-    let max = 7;
-    let min = 3;
+    let max = 30;
+    let min = 10;
     let random = Math.floor(Math.random() * (max - min) + min);
 
     const intervalRef = useRef();
